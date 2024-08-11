@@ -11,18 +11,18 @@ const ProductsSection = () => {
         <h2 className=" font-bold text-4xl text-black">Our Collections</h2>
 
         <Flex className="mt-5 flex-wrap gap-[12px] items-center justify-between">
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
-          <ItemCardProtrait className="w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
+          <ItemCardProtrait className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]" />
         </Flex>
 
         <button className=" my-10 mx-auto flex items-center justify-center gap-2 p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white">

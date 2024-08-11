@@ -10,8 +10,8 @@ const Footer = () => {
   return (
     <footer className="bg-red-600 py-7">
       <Container>
-        <Flex>
-          <div className="w-5/12">
+        <Flex className=" flex-wrap gap-10 xl:flex-nowrap xl:gap-0">
+          <div className=" w-full md:w-[35%] lg:w-5/12">
             <Image className="w-[80px]" src={logo} alt="logo" />
 
             <h1 className="mt-5 font-bold text-2xl text-white">
@@ -29,7 +29,7 @@ const Footer = () => {
               Email: test@email.com
             </p>
           </div>
-          <div className="w-2/12">
+          <div className="w-5/12 md:w-[25%] lg:w-2/12">
             <h2 className=" font-semibold text-xl text-white mb-5">Pages</h2>
 
             <List>
@@ -48,7 +48,7 @@ const Footer = () => {
               </ListItem>
             </List>
           </div>
-          <div className="w-2/12">
+          <div className="w-5/12 md:w-[25%] lg:w-2/12">
             <h2 className=" font-semibold text-xl text-white mb-5">About us</h2>
 
             <List>
@@ -60,7 +60,7 @@ const Footer = () => {
               </ListItem>
             </List>
           </div>
-          <div className="w-3/12">
+          <div className="w-full xl:w-3/12">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d29203.68370943054!2d90.38131880000003!3d23.8022198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sbn!2sbd!4v1723303717196!5m2!1sbn!2sbd"
               width="100%"
@@ -76,7 +76,7 @@ const Footer = () => {
 
       <div className="text-center py-4">
         <a
-          className=" font-medium text-base text-white"
+          className=" font-medium text-xs lg:text-base text-white"
           href="https://republic-of-legends.netlify.app/"
           target="_blank"
         >

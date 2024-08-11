@@ -9,7 +9,7 @@ const ItemCardProtrait = ({ className }) => {
   return (
     <div className={`${className} border-[1px] border-gray-500 p-2`}>
       <div className="w-full">
-        <Image src={item} alt="item" />
+        <Image className="mx-auto" src={item} alt="item" />
       </div>
 
       <div>

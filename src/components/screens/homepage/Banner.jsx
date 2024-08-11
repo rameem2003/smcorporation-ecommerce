@@ -49,6 +49,17 @@ const Banner = () => {
         {/* {i + 1} */}
       </div>
     ),
+
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
+    ],
   };
   return (
     <section>

@@ -16,19 +16,19 @@ const Navigation = () => {
             <Image className="w-[80px]" src={logo} alt="logo" />
           </div>
           <div className="w-1/2">
-            <List className="flex items-center justify-end gap-5">
+            <List className="flex items-end flex-col md:flex-row justify-end gap-3 xl:gap-5">
               <ListItem>
                 <a className="flex items-center gap-2" href="">
-                  <FaFacebook className="text-[20px] text-blue-500" />
-                  <span className=" font-bold text-lg text-black">
+                  <FaFacebook className=" text-base xl:text-[20px] text-blue-500" />
+                  <span className=" font-bold text-base xl:text-lg text-black">
                     Facebook
                   </span>
                 </a>
               </ListItem>
               <ListItem>
                 <a className="flex items-center gap-2" href="">
-                  <FaPhone className="text-[20px] text-black" />
-                  <span className=" font-bold text-lg text-black">
+                  <FaPhone className=" text-base xl:text-[20px] text-black" />
+                  <span className=" font-bold text-base xl:text-lg text-black">
                     05141841844
                   </span>
                 </a>
