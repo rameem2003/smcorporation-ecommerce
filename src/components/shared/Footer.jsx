@@ -5,6 +5,7 @@ import Flex from "../common/Flex";
 import Image from "../common/Image";
 import List from "../common/List";
 import ListItem from "../common/ListItem";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -34,11 +35,11 @@ const Footer = () => {
 
             <List>
               <ListItem className="font-normal text-lg text-white mb-2">
-                Home
+                <Link to="/">Home</Link>
               </ListItem>
 
               <ListItem className="font-normal text-lg text-white mb-2">
-                Shop
+                <Link to="/shop">Shop</Link>
               </ListItem>
               <ListItem className="font-normal text-lg text-white mb-2">
                 Account

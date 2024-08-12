@@ -4,13 +4,16 @@ import Flex from "../common/Flex";
 import List from "./../common/List";
 import ListItem from "./../common/ListItem";
 import item from "../../assets/item.png";
-import { Link } from "react-router-dom";
+import Image from "../common/Image";
+import { Link, useNavigate } from "react-router-dom";
 import { IoGridOutline } from "react-icons/io5";
 import { FaAngleDown, FaCartShopping } from "react-icons/fa6";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
-import Image from "../common/Image";
 
 const Header = () => {
+  // navigation instance
+  const navigate = useNavigate();
+  // all states and refs for toggle context menu
   const [toggleCategory, setToggleCategory] = useState(false);
   const [toggleAccount, setToggleAccount] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
@@ -175,7 +178,10 @@ const Header = () => {
                     </Flex>
                   </div>
 
-                  <button className="mt-10 flex items-center justify-center gap-2 w-full p-2 border-[1px] border-white font-semibold text-lg text-white">
+                  <button
+                    onClick={() => navigate("/cart")}
+                    className="mt-10 flex items-center justify-center gap-2 w-full p-2 border-[1px] border-white font-semibold text-lg text-white"
+                  >
                     Go to Cart
                   </button>
                 </div>
