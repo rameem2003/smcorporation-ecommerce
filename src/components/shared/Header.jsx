@@ -91,10 +91,16 @@ const Header = () => {
 
               {toggleAccount && (
                 <Flex className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-50 gap-2">
-                  <button className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white">
+                  <button
+                    onClick={() => navigate("/login")}
+                    className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
+                  >
                     Login
                   </button>
-                  <button className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white">
+                  <button
+                    onClick={() => navigate("/signup")}
+                    className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
+                  >
                     Signup
                   </button>
                 </Flex>

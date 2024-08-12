@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import Flex from "../components/common/Flex";
@@ -7,6 +8,8 @@ import Image from "../components/common/Image";
 import { FaTimes } from "react-icons/fa";
 
 const Cart = () => {
+  // navigation instance
+  const navigate = useNavigate();
   return (
     <section className="my-10">
       <Container>
@@ -274,8 +277,8 @@ const Cart = () => {
             </div>
 
             <button
-              //   onClick={goToCheckout}
-              className=" font-dm font-bold text-[14px] text-white bg-slate-800 py-4 px-8 ms-auto mt-[30px] block"
+              onClick={() => navigate("/checkout")}
+              className=" w-full md:w-auto font-dm font-bold text-[14px] text-white bg-slate-800 py-4 px-8 ms-auto mt-[30px] block"
             >
               Proceed to Checkout
             </button>

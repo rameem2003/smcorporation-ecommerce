@@ -6,7 +6,7 @@ const BreadCrums = ({ location }) => {
     <section className=" my-2">
       <h1 className="font-bold text-3xl text-black mb-2">{location}</h1>
       <h2 className=" font-medium text-sm text-red-500">
-        <Link to="/">Home</Link> / {location}
+        <Link to="/">Home</Link> {">"} {location}
       </h2>
     </section>
   );

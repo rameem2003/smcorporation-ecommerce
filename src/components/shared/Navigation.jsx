@@ -6,6 +6,7 @@ import logo from "../../assets/logo.png";
 import List from "./../common/List";
 import ListItem from "./../common/ListItem";
 import { FaFacebook, FaPhone } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
@@ -13,7 +14,9 @@ const Navigation = () => {
       <Container>
         <Flex className="items-center">
           <div className="w-1/2">
-            <Image className="w-[80px]" src={logo} alt="logo" />
+            <Link to="/">
+              <Image className=" w-[50px] md:w-[80px]" src={logo} alt="logo" />
+            </Link>
           </div>
           <div className="w-1/2">
             <List className="flex items-end flex-col md:flex-row justify-end gap-3 xl:gap-5">
