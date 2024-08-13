@@ -42,7 +42,7 @@ const Footer = () => {
                 <Link to="/shop">Shop</Link>
               </ListItem>
               <ListItem className="font-normal text-lg text-white mb-2">
-                Account
+                <Link to="/login">Account</Link>
               </ListItem>
               <ListItem className="font-normal text-lg text-white mb-2">
                 Privacy Policy
