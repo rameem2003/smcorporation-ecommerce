@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrums from "../components/common/BreadCrums";
 import Container from "../components/common/Container";
 import Flex from "../components/common/Flex";
 import PaginationForGrid from "../components/common/ProductPaginationForGrid";
+import { useSelector } from "react-redux";
 
 const Shop = () => {
-  // state for item show number
-  const [itemShow, setItemShow] = useState(12);
+  const products = useSelector((state) => state.allProducts.products); // get all products from the redux
+  const [categoryFilter, setCategoryFilter] = useState([]); // state for filter by category
+  const [itemShow, setItemShow] = useState(12); // state for item show number
+  const [category, setCategory] = useState([]); // state for unique category
+
+  useEffect(() => {
+    setCategory([...new Set(products.map((item) => item.category))]);
+    setCategoryFilter(products);
+  }, [products]);
+
+  // filter products by the category name
+  const showByCategory = (cat) => {
+    if (cat === "all") {
+      setCategoryFilter(products);
+    } else {
+      const filterCategory = products.filter((item) => item.category == cat);
+      setCategoryFilter(filterCategory);
+    }
+  };
+
+  // function for show all products
+  const showAllproducts = () => {
+    setCategoryFilter(products);
+  };
   return (
     <section className="my-10">
       <Container>
@@ -19,15 +42,20 @@ const Shop = () => {
                 Category
               </h2>
               <select
+                onChange={(e) => showByCategory(e.target.value)}
                 className=" w-full p-3 rounded-xl border-[1px] border-red-500"
                 name=""
                 id=""
               >
-                <option disabled value="">
-                  Choose Category
+                <option className=" capitalize" value="all">
+                  All
                 </option>
-                <option value="">Pipe Fetings</option>
-                <option value="">Pipe Fetings</option>
+
+                {category.map((item, i) => (
+                  <option className=" capitalize" value={item} key={i}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="w-full md:w-4/12">
@@ -63,7 +91,10 @@ const Shop = () => {
           </Flex>
 
           <div className="mt-10">
-            <PaginationForGrid itemsPerPage={itemShow} />
+            <PaginationForGrid
+              itemsPerPage={itemShow}
+              products={categoryFilter}
+            />
           </div>
         </div>
       </Container>

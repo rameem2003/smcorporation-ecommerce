@@ -4,10 +4,7 @@ import Flex from "./Flex";
 import ItemCardProtrait from "./ItemCardProtrait";
 const PaginationForGrid = ({ itemsPerPage, products }) => {
   // Example items, to simulate fetching from another resources.
-  const items = [
-    1, 1, 1, 1, 1, 11, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11,
-    1, 1, 1, 1, 1, 1,
-  ];
+  const items = products;
 
   function Items({ currentItems }) {
     return (
@@ -15,6 +12,7 @@ const PaginationForGrid = ({ itemsPerPage, products }) => {
         {currentItems &&
           currentItems.map((item, i) => (
             <ItemCardProtrait
+              data={item}
               className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]"
               key={i}
             />

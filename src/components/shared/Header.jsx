@@ -6,22 +6,47 @@ import ListItem from "./../common/ListItem";
 import item from "../../assets/item.png";
 import Image from "../common/Image";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { IoGridOutline } from "react-icons/io5";
 import { FaAngleDown, FaCartShopping } from "react-icons/fa6";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { FaSearch, FaTimes, FaUserCircle } from "react-icons/fa";
+import { allProducts } from "../../redux/features/LoadAllProductsSlice";
+import { removeProduct } from "../../redux/features/CartSlice";
 
 const Header = () => {
+  const products = useSelector((state) => state.allProducts.products); // get all products from the redux
+  const cart = useSelector((state) => state.cartArray.cart); // get cart info from the redux
+  // dispatch instance
+  const dispatch = useDispatch();
   // navigation instance
   const navigate = useNavigate();
   // all states and refs for toggle context menu
   const [toggleCategory, setToggleCategory] = useState(false);
   const [toggleAccount, setToggleAccount] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
+  const [category, setCategory] = useState([]); // state for unique category
   const categoryRef = useRef();
   const accountRef = useRef();
   const cartRef = useRef();
 
+  /**
+   * function for store all products coming from the API
+   * store in redux store
+   */
+
+  const fetchProducts = async () => {
+    const res = await axios.get("https://dummyjson.com/products");
+    dispatch(allProducts(res.data.products));
+  };
+
+  // function for remove item from cart
+  const removeItemFromCart = (item) => {
+    dispatch(removeProduct(item.id));
+  };
+
   useEffect(() => {
+    setCategory([...new Set(products.map((item) => item.category))]);
     document.addEventListener("click", (e) => {
       categoryRef.current.contains(e.target)
         ? setToggleCategory(true)
@@ -33,6 +58,8 @@ const Header = () => {
         ? setToggleCart(true)
         : setToggleCart(false);
     });
+
+    fetchProducts();
   }, []);
   return (
     <header className="bg-red-600 py-2">
@@ -52,12 +79,11 @@ const Header = () => {
             </div>
             {toggleCategory && (
               <List className=" w-[300px] md:w-[300px] bg-red-600 absolute top-[48px] left-0 md:left-[18px] z-50">
-                <ListItem className=" font-bold text-xl text-white px-2 py-4 block duration-300 ease-in-out hover:pl-5 hover:bg-red-700">
-                  <Link>Pipe Fitings</Link>
-                </ListItem>
-                <ListItem className=" font-bold text-xl text-white px-2 py-4 block duration-300 ease-in-out hover:pl-5 hover:bg-red-700">
-                  <Link>Bathroom Fitings</Link>
-                </ListItem>
+                {category.map((item, i) => (
+                  <ListItem className=" capitalize font-bold text-xl text-white px-2 py-4 block duration-300 ease-in-out hover:pl-5 hover:bg-red-700">
+                    <Link>{item}</Link>
+                  </ListItem>
+                ))}
               </List>
             )}
           </div>
@@ -111,77 +137,57 @@ const Header = () => {
                   <FaCartShopping className=" text-[24px] text-white" />
 
                   <span
-                    className="hidden lg:block font-bold text-sm
-                  xl:text-xl text-white"
+                    className="hidden lg:flex gap-2 items-center jus font-bold text-sm
+                    xl:text-xl text-white"
                   >
-                    Cart
+                    Cart{" "}
+                    <span className="bg-white text-sm text-black flex items-center justify-center h-[20px] w-[20px] rounded-full">
+                      {cart.length}
+                    </span>
                   </span>
                 </Flex>
               </div>
 
               {toggleCart && (
-                <div className="w-[300px] p-3 bg-slate-800 absolute top-[48px] right-0 z-50 ">
-                  <div className="max-h-[220px] overflow-y-scroll">
-                    <Flex className="items-center gap-5 mb-5">
-                      <Image
-                        src={item}
-                        alt="item"
-                        className="w-[80px] h-[80px]"
-                      />
+                <div className="w-[360px] p-3 bg-slate-800 absolute top-[48px] right-0 z-50 ">
+                  <div className="max-h-[220px] overflow-y-scroll no-scrollbar">
+                    {cart.length > 0 ? (
+                      cart.map((item, i) => (
+                        <Flex className="items-center gap-5 mb-5 w-full">
+                          <div className="w-3/12">
+                            <Image
+                              src={item.thumbnail}
+                              alt="item"
+                              className="w-[80px] h-[80px]"
+                            />
+                          </div>
 
-                      <div>
-                        <h3 className=" font-medium text-lg text-white">
-                          Product Name
-                        </h3>
+                          <div className="w-9/12">
+                            <Flex className="items-center justify-between">
+                              <h3 className=" font-medium text-lg text-white">
+                                {item.title.slice(0, 20)}
+                              </h3>
 
-                        <p className=" font-semibold text-base text-white">
-                          Qun: x3
-                        </p>
-                        <p className=" font-semibold text-base text-white">
-                          Price: ৳ 1200 BDT
-                        </p>
-                      </div>
-                    </Flex>
-                    <Flex className="items-center gap-5 mb-5">
-                      <Image
-                        src={item}
-                        alt="item"
-                        className="w-[80px] h-[80px]"
-                      />
+                              <FaTimes
+                                onClick={() => removeItemFromCart(item)}
+                                className="cursor-pointer text-white"
+                              />
+                            </Flex>
 
-                      <div>
-                        <h3 className=" font-medium text-lg text-white">
-                          Product Name
-                        </h3>
-
-                        <p className=" font-semibold text-base text-white">
-                          Qun: x3
-                        </p>
-                        <p className=" font-semibold text-base text-white">
-                          Price: ৳ 1200 BDT
-                        </p>
-                      </div>
-                    </Flex>
-                    <Flex className="items-center gap-5 mb-5">
-                      <Image
-                        src={item}
-                        alt="item"
-                        className="w-[80px] h-[80px]"
-                      />
-
-                      <div>
-                        <h3 className=" font-medium text-lg text-white">
-                          Product Name
-                        </h3>
-
-                        <p className=" font-semibold text-base text-white">
-                          Qun: x3
-                        </p>
-                        <p className=" font-semibold text-base text-white">
-                          Price: ৳ 1200 BDT
-                        </p>
-                      </div>
-                    </Flex>
+                            <p className=" font-semibold text-base text-white">
+                              Qun: x {item.qun}
+                            </p>
+                            <p className=" font-semibold text-base text-white">
+                              Price: ৳ {item.price} BDT
+                            </p>
+                          </div>
+                        </Flex>
+                      ))
+                    ) : (
+                      <h2 className=" font-bold text-lg text-white">
+                        Your Cart is empty
+                      </h2>
+                    )}
                   </div>
 
                   <button
