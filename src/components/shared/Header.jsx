@@ -3,32 +3,33 @@ import Container from "../common/Container";
 import Flex from "../common/Flex";
 import List from "./../common/List";
 import ListItem from "./../common/ListItem";
-import item from "../../assets/item.png";
 import Image from "../common/Image";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
 import { IoGridOutline } from "react-icons/io5";
 import { FaAngleDown, FaCartShopping } from "react-icons/fa6";
 import { FaSearch, FaTimes, FaUserCircle } from "react-icons/fa";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/features/LoadAllProductsSlice";
 import { removeProduct } from "../../redux/features/CartSlice";
 
 const Header = () => {
   const products = useSelector((state) => state.allProducts.products); // get all products from the redux
   const cart = useSelector((state) => state.cartArray.cart); // get cart info from the redux
-  // dispatch instance
-  const dispatch = useDispatch();
-  // navigation instance
-  const navigate = useNavigate();
+  const dispatch = useDispatch(); // dispatch instance
+  const navigate = useNavigate(); // navigation instance
   // all states and refs for toggle context menu
   const [toggleCategory, setToggleCategory] = useState(false);
   const [toggleAccount, setToggleAccount] = useState(false);
+  const [searchRef, setSearchRef] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
   const [category, setCategory] = useState([]); // state for unique category
+  const [search, setSearch] = useState([]); // initial state all products for searching
+  const [filterResult, setFilterResult] = useState([]); // state for storing the products after searching
   const categoryRef = useRef();
   const accountRef = useRef();
   const cartRef = useRef();
+  const searchResultRef = useRef();
 
   /**
    * function for store all products coming from the API
@@ -38,6 +39,7 @@ const Header = () => {
   const fetchProducts = async () => {
     const res = await axios.get("https://dummyjson.com/products");
     dispatch(allProducts(res.data.products));
+    setSearch(res.data.products);
   };
 
   // function for remove item from cart
@@ -45,7 +47,20 @@ const Header = () => {
     dispatch(removeProduct(item.id));
   };
 
+  // function for handle search
+  const handleSearch = (e) => {
+    if (e.target.value == "") {
+      setFilterResult([]);
+    } else {
+      const searchResult = search.filter((searchItem) =>
+        searchItem.title.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      setFilterResult(searchResult); // stae for store the search result
+    }
+  };
+
   useEffect(() => {
+    fetchProducts();
     setCategory([...new Set(products.map((item) => item.category))]);
     document.addEventListener("click", (e) => {
       categoryRef.current.contains(e.target)
@@ -57,10 +72,14 @@ const Header = () => {
       cartRef.current.contains(e.target)
         ? setToggleCart(true)
         : setToggleCart(false);
+      searchResultRef.current.contains(e.target)
+        ? setSearchRef(true)
+        : setSearchRef(false);
     });
+  }, [products]);
 
-    fetchProducts();
-  }, []);
+  // console.log(search);
+
   return (
     <header className="bg-red-600 py-2">
       <Container>
@@ -80,7 +99,10 @@ const Header = () => {
             {toggleCategory && (
               <List className=" w-[300px] md:w-[300px] bg-red-600 absolute top-[48px] left-0 md:left-[18px] z-50">
                 {category.map((item, i) => (
-                  <ListItem className=" capitalize font-bold text-xl text-white px-2 py-4 block duration-300 ease-in-out hover:pl-5 hover:bg-red-700">
+                  <ListItem
+                    key={i}
+                    className=" capitalize font-bold text-xl text-white px-2 py-4 block duration-300 ease-in-out hover:pl-5 hover:bg-red-700"
+                  >
                     <Link>{item}</Link>
                   </ListItem>
                 ))}
@@ -88,8 +110,9 @@ const Header = () => {
             )}
           </div>
           <div className="w-6/12 md:w-8/12">
-            <div className=" relative">
+            <div ref={searchResultRef} className=" relative w-full">
               <input
+                onChange={handleSearch}
                 className=" w-full rounded-[5px] p-3 pr-[50px] font-medium text-lg"
                 type="text"
                 name=""
@@ -98,6 +121,47 @@ const Header = () => {
               />
 
               <FaSearch className=" text-[24px] text-black absolute right-3 top-[50%] translate-y-[-50%]" />
+
+              {searchRef && (
+                <div className="w-full max-h-[300px] overflow-y-scroll bg-white fixed md:absolute top-[140px] md:top-14 left-0 z-[1]">
+                  {filterResult.length > 0 ? (
+                    filterResult.map((filterItem, i) => (
+                      <Flex
+                        key={i}
+                        className={`p-2 mb-2 bg-white items-center justify-between hover:bg-gray-200`}
+                      >
+                        <Flex className={`items-center gap-4`}>
+                          <Image
+                            src={filterItem.thumbnail}
+                            alt={""}
+                            className={`w-[80px] h-[80px] object-cover`}
+                          />
+                          <div>
+                            <h2 className="font-semibold text-xl">
+                              {filterItem.title}
+                            </h2>
+
+                            <h3 className="font-normal text-sm mt-1">
+                              $ {filterItem.price}
+                            </h3>
+                          </div>
+                        </Flex>
+
+                        <Link
+                          to={`/product/${filterItem.id}`}
+                          className=" px-4 py-2 bg-slate-800 text-white font-normal text-sm mr-2"
+                        >
+                          View
+                        </Link>
+                      </Flex>
+                    ))
+                  ) : (
+                    <h1 className=" font-dm font-semibold text-xl text-center mt-2">
+                      No Products Found
+                    </h1>
+                  )}
+                </div>
+              )}
             </div>
           </div>
           <div className="w-3/12 md:w-2/12">
@@ -149,11 +213,11 @@ const Header = () => {
               </div>
 
               {toggleCart && (
-                <div className="w-[360px] p-3 bg-slate-800 absolute top-[48px] right-0 z-50 ">
+                <div className=" w-[300px] md:w-[360px] p-3 bg-slate-800 absolute top-[48px] right-0 z-50 ">
                   <div className="max-h-[220px] overflow-y-scroll no-scrollbar">
                     {cart.length > 0 ? (
                       cart.map((item, i) => (
-                        <Flex className="items-center gap-5 mb-5 w-full">
+                        <Flex className="items-center gap-5 mb-5 w-full group hover:bg-white">
                           <div className="w-3/12">
                             <Image
                               src={item.thumbnail}
@@ -164,20 +228,20 @@ const Header = () => {
 
                           <div className="w-9/12">
                             <Flex className="items-center justify-between">
-                              <h3 className=" font-medium text-lg text-white">
+                              <h3 className=" font-medium text-lg text-white group-hover:text-black">
                                 {item.title.slice(0, 20)}
                               </h3>
 
                               <FaTimes
                                 onClick={() => removeItemFromCart(item)}
-                                className="cursor-pointer text-white"
+                                className="cursor-pointer text-white group-hover:text-black"
                               />
                             </Flex>
 
-                            <p className=" font-semibold text-base text-white">
+                            <p className=" font-semibold text-base text-white group-hover:text-black">
                               Qun: x {item.qun}
                             </p>
-                            <p className=" font-semibold text-base text-white">
+                            <p className=" font-semibold text-base text-white group-hover:text-black">
                               Price: ৳ {item.price} BDT
                             </p>
                           </div>

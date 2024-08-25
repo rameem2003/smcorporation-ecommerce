@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import BreadCrums from "../components/common/BreadCrums";
 import Container from "../components/common/Container";
 import Flex from "../components/common/Flex";
@@ -11,11 +11,6 @@ const Shop = () => {
   const [itemShow, setItemShow] = useState(12); // state for item show number
   const [category, setCategory] = useState([]); // state for unique category
 
-  useEffect(() => {
-    setCategory([...new Set(products.map((item) => item.category))]);
-    setCategoryFilter(products);
-  }, [products]);
-
   // filter products by the category name
   const showByCategory = (cat) => {
     if (cat === "all") {
@@ -25,11 +20,11 @@ const Shop = () => {
       setCategoryFilter(filterCategory);
     }
   };
-
-  // function for show all products
-  const showAllproducts = () => {
+  useEffect(() => {
+    setCategory([...new Set(products.map((item) => item.category))]);
     setCategoryFilter(products);
-  };
+  }, []);
+
   return (
     <section className="my-10">
       <Container>
@@ -91,10 +86,7 @@ const Shop = () => {
           </Flex>
 
           <div className="mt-10">
-            <PaginationForGrid
-              itemsPerPage={itemShow}
-              products={categoryFilter}
-            />
+            <PaginationForGrid itemsPerPage={itemShow} products={products} />
           </div>
         </div>
       </Container>

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import Flex from "../components/common/Flex";
-import { useParams } from "react-router-dom";
-import axios from "axios";
 import Image from "../components/common/Image";
+import ItemCardProtrait from "../components/common/ItemCardProtrait";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { FaCartShopping, FaShare } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { cartReducer } from "../redux/features/CartSlice";
 import toast, { Toaster } from "react-hot-toast";
-import ItemCardProtrait from "../components/common/ItemCardProtrait";
 
 const ProductDIsplay = () => {
   const dispatch = useDispatch(); // dispatch instance
