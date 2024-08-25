@@ -86,7 +86,10 @@ const Shop = () => {
           </Flex>
 
           <div className="mt-10">
-            <PaginationForGrid itemsPerPage={itemShow} products={products} />
+            <PaginationForGrid
+              itemsPerPage={itemShow}
+              products={categoryFilter}
+            />
           </div>
         </div>
       </Container>

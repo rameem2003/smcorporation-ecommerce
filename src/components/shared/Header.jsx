@@ -61,7 +61,7 @@ const Header = () => {
 
   useEffect(() => {
     fetchProducts();
-    setCategory([...new Set(products.map((item) => item.category))]);
+
     document.addEventListener("click", (e) => {
       categoryRef.current.contains(e.target)
         ? setToggleCategory(true)
@@ -76,9 +76,11 @@ const Header = () => {
         ? setSearchRef(true)
         : setSearchRef(false);
     });
-  }, [products]);
+  }, []);
 
-  // console.log(search);
+  useEffect(() => {
+    setCategory([...new Set(products.map((item) => item.category))]);
+  });
 
   return (
     <header className="bg-red-600 py-2">
