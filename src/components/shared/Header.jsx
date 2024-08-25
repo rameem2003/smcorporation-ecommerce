@@ -31,17 +31,6 @@ const Header = () => {
   const cartRef = useRef();
   const searchResultRef = useRef();
 
-  /**
-   * function for store all products coming from the API
-   * store in redux store
-   */
-
-  const fetchProducts = async () => {
-    const res = await axios.get("https://dummyjson.com/products");
-    dispatch(allProducts(res.data.products));
-    setSearch(res.data.products);
-  };
-
   // function for remove item from cart
   const removeItemFromCart = (item) => {
     dispatch(removeProduct(item.id));
@@ -60,8 +49,20 @@ const Header = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
+    /**
+     * function for store all products coming from the API
+     * store in redux store
+     */
 
+    const fetchProducts = async () => {
+      const res = await axios.get("https://dummyjson.com/products");
+      dispatch(allProducts(res.data.products));
+      setSearch(res.data.products);
+    };
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
     document.addEventListener("click", (e) => {
       categoryRef.current.contains(e.target)
         ? setToggleCategory(true)
@@ -80,7 +81,7 @@ const Header = () => {
 
   useEffect(() => {
     setCategory([...new Set(products.map((item) => item.category))]);
-  });
+  }, [products]);
 
   return (
     <header className="bg-red-600 py-2">

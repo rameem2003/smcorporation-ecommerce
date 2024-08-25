@@ -3,8 +3,12 @@ import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import Flex from "../components/common/Flex";
 import SuccessfullScreen from "../components/screens/CheckoutPage/SuccessfullScreen";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const customerData = useSelector((state) => state.user.user); // get customer data from rudux
+  console.log(customerData);
+
   // all state for handle checkout shipping data
   const [address, setAddress] = useState("");
   const [area, setArea] = useState("");
