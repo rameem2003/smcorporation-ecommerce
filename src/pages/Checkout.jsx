@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import Flex from "../components/common/Flex";
 import SuccessfullScreen from "../components/screens/CheckoutPage/SuccessfullScreen";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartClear } from "../redux/features/CartSlice";
 
 const Checkout = () => {
   const customerData = useSelector((state) => state.user.user); // get customer data from rudux
-  console.log(customerData);
+  const cart = useSelector((state) => state.cartArray.cart); // get cart info from the redux
+  const dispatch = useDispatch();
 
   // all state for handle checkout shipping data
   const [address, setAddress] = useState("");
@@ -15,13 +17,27 @@ const Checkout = () => {
   const [district, setDistrict] = useState("");
   const [postcode, setPostcode] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [total, setTotal] = useState(0); // for calculate & store the price
+
+  // calculate the grand total
+  const calculateTotal = () => {
+    let p = 0;
+    cart.map((data) => (p = p + Math.round(data.price * data.qun)));
+    setTotal(p);
+  };
+
+  useEffect(() => {
+    calculateTotal();
+  });
 
   // function for checkout
   const handleCheckout = (e) => {
     e.preventDefault();
 
-    console.log({ address, area, district, postcode });
+    console.log({ customerData, address, area, district, postcode, cart });
     setIsSuccess(true);
+
+    dispatch(cartClear());
   };
 
   return (
@@ -117,7 +133,7 @@ const Checkout = () => {
                 Your Order
               </h4>
 
-              <div className="w-full lg:w-[644px]">
+              <div className="w-full xl:w-[644px]">
                 <Flex>
                   <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-primary">
                     Product
@@ -127,39 +143,34 @@ const Checkout = () => {
                   </p>
                 </Flex>
 
-                {/* {cartProducts.length > 0 ? (
-                cartProducts.map((cItem, i) => (
-                  <Flex key={i}>
+                {cart.length > 0 ? (
+                  cart.map((cItem, i) => (
+                    <Flex key={i}>
+                      <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-primary">
+                        {cItem.title} (x{cItem.qun})
+                      </p>
+                      <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-secondary">
+                        ৳ {cItem.price * cItem.qun} BDT
+                      </p>
+                    </Flex>
+                  ))
+                ) : (
+                  <Flex>
                     <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-primary">
-                      {cItem.title} (x{cItem.qun})
+                      Product name x 1
                     </p>
                     <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-secondary">
-                      {Math.round(
-                        (cItem.price -
-                          (cItem.price * cItem.discountPercentage) / 100) *
-                          cItem.qun
-                      )}
-                      $
+                      389.99 $
                     </p>
                   </Flex>
-                ))
-              ) : (
-                <Flex>
-                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-primary">
-                    Product name x 1
-                  </p>
-                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-secondary">
-                    389.99 $
-                  </p>
-                </Flex>
-              )} */}
+                )}
 
                 <Flex>
                   <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-primary">
                     Subtotal
                   </p>
                   <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-secondary">
-                    price $
+                    ৳ {total} BDT
                   </p>
                 </Flex>
                 <Flex>
@@ -167,7 +178,7 @@ const Checkout = () => {
                     Total
                   </p>
                   <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-secondary">
-                    price $
+                    ৳ {total} BDT
                   </p>
                 </Flex>
               </div>
