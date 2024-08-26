@@ -1,24 +1,67 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
+import ButtonAnimation from "../components/common/ButtonAnimation";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
+  const navigate = useNavigate(); // navigation instance
   // states for get the user signup info
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [passwordToggle, setPasswordToggle] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // function for signup user
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    console.log({ name, phone, password });
+    if (name && phone && password) {
+      let newCustomer = {
+        id: uuidv4(),
+        name,
+        phone,
+        password,
+        create: new Date().toLocaleString(),
+      };
+
+      try {
+        const res = await axios.post(
+          "https://smcorpapi.vercel.app/api/auth/register",
+          newCustomer,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(res);
+
+        if (res.data.msg == "User is exist with same number.") {
+          setLoading(false);
+          toast.error(res.data.msg);
+        } else {
+          toast.success("Signup successful");
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+        }
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+        toast.error("Signup unsuccessfull");
+      }
+    }
   };
   return (
     <section className="my-10">
+      <Toaster position="top-right" reverseOrder={false} />
       <Container>
         <BreadCrums location="Signup" />
 
@@ -86,12 +129,16 @@ const Signup = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full p-3 bg-slate-800 font-medium text-xl text-white"
-          >
-            Signup
-          </button>
+          {loading ? (
+            <ButtonAnimation />
+          ) : (
+            <button
+              type="submit"
+              className="w-full p-3 bg-slate-800 font-medium text-xl text-white"
+            >
+              Signup
+            </button>
+          )}
 
           <p className=" mt-2 text-base font-normal text-center">
             <Link to="/login" className="text-red-500">

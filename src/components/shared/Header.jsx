@@ -12,10 +12,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/features/LoadAllProductsSlice";
 import { removeProduct } from "../../redux/features/CartSlice";
+import { logoutUser } from "../../redux/features/AuthSlice";
 
 const Header = () => {
   const products = useSelector((state) => state.allProducts.products); // get all products from the redux
   const cart = useSelector((state) => state.cartArray.cart); // get cart info from the redux
+  const customerdata = useSelector((state) => state.user.user); // get customer info from the redux
   const dispatch = useDispatch(); // dispatch instance
   const navigate = useNavigate(); // navigation instance
   // all states and refs for toggle context menu
@@ -46,6 +48,15 @@ const Header = () => {
       );
       setFilterResult(searchResult); // stae for store the search result
     }
+  };
+
+  // function for logout customer
+  const handleLogout = () => {
+    dispatch(logoutUser({ status: false }));
+
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
   };
 
   useEffect(() => {
@@ -183,20 +194,53 @@ const Header = () => {
               </div>
 
               {toggleAccount && (
-                <Flex className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-50 gap-2">
-                  <button
-                    onClick={() => navigate("/login")}
-                    className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
-                  >
-                    Login
-                  </button>
-                  <button
-                    onClick={() => navigate("/signup")}
-                    className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
-                  >
-                    Signup
-                  </button>
-                </Flex>
+                <>
+                  {customerdata.status ? (
+                    <div className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-50">
+                      <h3 className=" font-medium text-lg text-white">
+                        Welcome,
+                      </h3>
+
+                      <h2 className=" font-bold text-xl text-white">
+                        {customerdata.user}
+                      </h2>
+
+                      <p className="font-normal text-base text-white">
+                        Phone: {customerdata.phone}
+                      </p>
+
+                      <Flex className="mt-5 gap-2">
+                        <Link
+                          to="/profile"
+                          className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
+                        >
+                          Profile
+                        </Link>
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
+                        >
+                          Logout
+                        </button>
+                      </Flex>
+                    </div>
+                  ) : (
+                    <Flex className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-50 gap-2">
+                      <button
+                        onClick={() => navigate("/login")}
+                        className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
+                      >
+                        Login
+                      </button>
+                      <button
+                        onClick={() => navigate("/signup")}
+                        className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
+                      >
+                        Signup
+                      </button>
+                    </Flex>
+                  )}
+                </>
               )}
 
               <div ref={cartRef}>

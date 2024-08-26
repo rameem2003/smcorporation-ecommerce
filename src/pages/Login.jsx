@@ -1,23 +1,65 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
+import ButtonAnimation from "../components/common/ButtonAnimation";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { signInUser } from "../redux/features/AuthSlice";
 
 const Login = () => {
+  const dispatch = useDispatch(); // dispatch instance
+  const navigate = useNavigate(); // navigation instance
   // all state for get user login info
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [passwordToggle, setPasswordToggle] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // function for login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log({ phone, password });
+    setLoading(true);
+    if (phone && password) {
+      let customer = {
+        phone,
+        password,
+      };
+      try {
+        let res = await axios.post(
+          "https://smcorpapi.vercel.app/api/auth/varify",
+          customer,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        console.log(res);
+
+        if (res.data.msg == "User Found") {
+          toast.success("Signin successful");
+
+          dispatch(signInUser(res.data));
+
+          navigate("/");
+        } else {
+          setLoading(false);
+          toast.error("Invalid User");
+        }
+      } catch (error) {
+        setLoading(false);
+        toast.error("Something went wrong");
+      }
+    }
   };
   return (
     <section className=" my-10">
       <Container>
+        <Toaster position="top-right" reverseOrder={false} />
         <BreadCrums location="Login" />
 
         <form
@@ -70,13 +112,16 @@ const Login = () => {
               )}
             </div>
           </div>
-
-          <button
-            type="submit"
-            className="w-full p-3 bg-slate-800 font-medium text-xl text-white"
-          >
-            Login
-          </button>
+          {loading ? (
+            <ButtonAnimation />
+          ) : (
+            <button
+              type="submit"
+              className="w-full p-3 bg-slate-800 font-medium text-xl text-white"
+            >
+              Login
+            </button>
+          )}
 
           <p className=" mt-2 text-base font-normal text-center">
             No Account ?

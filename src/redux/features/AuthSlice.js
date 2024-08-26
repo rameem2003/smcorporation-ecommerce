@@ -3,20 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 export const AuthSlice = createSlice({
   name: "User",
   initialState: {
-    user: {
-      name: "Mahmood Hassan Rameem",
-      phone: "01409029641",
-      email: "rameem2019@gmail.com",
-    },
+    user: localStorage.getItem("smcorpcredential")
+      ? JSON.parse(localStorage.getItem("smcorpcredential"))
+      : { status: false },
   },
   reducers: {
     signInUser: (state, action) => {
       state.user = action.payload;
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("smcorpcredential", JSON.stringify(action.payload));
     },
     logoutUser: (state, action) => {
       state.user = action.payload;
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("smcorpcredential", JSON.stringify(action.payload));
     },
   },
 });
