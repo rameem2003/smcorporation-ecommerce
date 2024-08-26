@@ -9,7 +9,7 @@ import { cartClear } from "../redux/features/CartSlice";
 const Checkout = () => {
   const customerData = useSelector((state) => state.user.user); // get customer data from rudux
   const cart = useSelector((state) => state.cartArray.cart); // get cart info from the redux
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // disapatch instance
 
   // all state for handle checkout shipping data
   const [address, setAddress] = useState("");
@@ -165,19 +165,19 @@ const Checkout = () => {
                   </Flex>
                 )}
 
-                <Flex>
-                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-primary">
+                <Flex className="bg-red-700">
+                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-white">
                     Subtotal
                   </p>
-                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-secondary">
+                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-white">
                     ৳ {total} BDT
                   </p>
                 </Flex>
-                <Flex>
-                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-primary">
+                <Flex className="bg-red-700">
+                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-bold text-[16px] text-white">
                     Total
                   </p>
-                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-secondary">
+                  <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-dm font-normal text-[16px] text-white">
                     ৳ {total} BDT
                   </p>
                 </Flex>
