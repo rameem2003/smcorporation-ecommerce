@@ -4,6 +4,7 @@ import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import Flex from "../components/common/Flex";
 import SuccessfullScreen from "../components/screens/CheckoutPage/SuccessfullScreen";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { cartClear } from "../redux/features/CartSlice";
 
@@ -32,7 +33,7 @@ const Checkout = () => {
   });
 
   // function for checkout
-  const handleCheckout = (e) => {
+  const handleCheckout = async (e) => {
     e.preventDefault();
 
     let orderInvoiceData = {
@@ -49,10 +50,30 @@ const Checkout = () => {
       orderStatus: "pending",
     };
 
-    console.log(orderInvoiceData);
-    // setIsSuccess(true);
+    if (address && area && district && postcode) {
+      try {
+        const res = await axios.post(
+          "https://smcorpapi.vercel.app/api/order",
+          orderInvoiceData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-    dispatch(cartClear());
+        console.log(res);
+
+        setIsSuccess(true);
+
+        dispatch(cartClear());
+      } catch (error) {
+        console.log(error);
+        setIsSuccess(false);
+      }
+    }
+
+    // console.log(orderInvoiceData);
   };
 
   return (
