@@ -23,7 +23,7 @@ const Shop = () => {
   useEffect(() => {
     setCategory([...new Set(products.map((item) => item.category))]);
     setCategoryFilter(products);
-  }, []);
+  }, [products]);
 
   return (
     <section className="my-10">

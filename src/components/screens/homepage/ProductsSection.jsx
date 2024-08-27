@@ -2,9 +2,11 @@ import React from "react";
 import Container from "../../common/Container";
 import Flex from "../../common/Flex";
 import ItemCardProtrait from "../../common/ItemCardProtrait";
-import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FaArrowRight } from "react-icons/fa6";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const ProductsSection = () => {
   // get all products from the redux
@@ -13,6 +15,32 @@ const ProductsSection = () => {
     <section className="my-10">
       <Container>
         <h2 className=" font-bold text-4xl text-black">Our Collections</h2>
+
+        {products.length == 0 && (
+          <Flex className="gap-5 flex-wrap lg:flex-nowrap">
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+          </Flex>
+        )}
 
         <Flex className="mt-5 flex-wrap gap-[12px] items-center justify-between">
           {products.slice(0, 12).map((data, i) => (

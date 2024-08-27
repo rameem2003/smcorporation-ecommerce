@@ -4,6 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Rootlayout from "./Layouts/Rootlayout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -15,7 +16,6 @@ import Checkout from "./pages/Checkout";
 import ErrorPage from "./pages/ErrorPage";
 import ProductDIsplay from "./pages/ProductDIsplay";
 import Profile from "./pages/Profile";
-import { useSelector } from "react-redux";
 import ProtectorRoute from "./routes/ProtectorRoute";
 
 function App() {

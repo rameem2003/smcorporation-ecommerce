@@ -6,8 +6,8 @@ import ButtonAnimation from "../components/common/ButtonAnimation";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import toast, { Toaster } from "react-hot-toast";
 import { signInUser } from "../redux/features/AuthSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const dispatch = useDispatch(); // dispatch instance

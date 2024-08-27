@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import Flex from "../components/common/Flex";
@@ -34,8 +35,22 @@ const Checkout = () => {
   const handleCheckout = (e) => {
     e.preventDefault();
 
-    console.log({ customerData, address, area, district, postcode, cart });
-    setIsSuccess(true);
+    let orderInvoiceData = {
+      orderID: uuidv4(),
+      customerName: customerData.user,
+      phone: customerData.phone,
+      address,
+      area,
+      district,
+      postcode,
+      orderTimeStamp: new Date().toLocaleString(),
+      orderTimeString: Date.now(),
+      cart,
+      orderStatus: "pending",
+    };
+
+    console.log(orderInvoiceData);
+    // setIsSuccess(true);
 
     dispatch(cartClear());
   };
@@ -44,6 +59,12 @@ const Checkout = () => {
     <section className="my-10 relative">
       <Container>
         <BreadCrums location="Checkout" />
+
+        {cart.length == 0 && (
+          <p className="p-3 bg-red-700 font-semibold text-xl text-center text-white">
+            You have no item to cart. pls get your products
+          </p>
+        )}
 
         <div className="md:mt-[100px] ">
           {isSuccess && <SuccessfullScreen />}
@@ -121,7 +142,10 @@ const Checkout = () => {
 
                 <button
                   type="submit"
-                  className="w-full p-3 bg-slate-800 font-medium text-xl text-white"
+                  className={`w-full p-3 bg-slate-800 font-medium text-xl text-white ${
+                    cart.length == 0 &&
+                    "pointer-events-none cursor-not-allowed bg-slate-400"
+                  }`}
                 >
                   Procced to Checkout
                 </button>

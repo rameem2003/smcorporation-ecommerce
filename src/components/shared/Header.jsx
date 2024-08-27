@@ -4,15 +4,15 @@ import Flex from "../common/Flex";
 import List from "./../common/List";
 import ListItem from "./../common/ListItem";
 import Image from "../common/Image";
-import { IoGridOutline } from "react-icons/io5";
-import { FaAngleDown, FaCartShopping } from "react-icons/fa6";
-import { FaSearch, FaTimes, FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/features/LoadAllProductsSlice";
 import { removeProduct } from "../../redux/features/CartSlice";
 import { logoutUser } from "../../redux/features/AuthSlice";
+import { IoGridOutline } from "react-icons/io5";
+import { FaAngleDown, FaCartShopping } from "react-icons/fa6";
+import { FaSearch, FaTimes, FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const products = useSelector((state) => state.allProducts.products); // get all products from the redux
@@ -156,7 +156,7 @@ const Header = () => {
                             </h2>
 
                             <h3 className="font-normal text-sm mt-1">
-                              $ {filterItem.price}
+                              ৳ {filterItem.price} BDT
                             </h3>
                           </div>
                         </Flex>

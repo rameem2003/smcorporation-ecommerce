@@ -2,22 +2,51 @@ import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import Flex from "./Flex";
 import ItemCardProtrait from "./ItemCardProtrait";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const PaginationForGrid = ({ itemsPerPage, products }) => {
   // Example items, to simulate fetching from another resources.
   const items = products;
 
   function Items({ currentItems }) {
     return (
-      <Flex className="flex-wrap gap-[12px] items-center justify-between">
-        {currentItems &&
-          currentItems.map((item, i) => (
-            <ItemCardProtrait
-              data={item}
-              className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]"
-              key={i}
-            />
-          ))}
-      </Flex>
+      <>
+        {currentItems.length == 0 && (
+          <Flex className="gap-5 flex-wrap lg:flex-nowrap">
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+            <div className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]">
+              <Skeleton height={350} />
+            </div>
+          </Flex>
+        )}
+        <Flex className="flex-wrap gap-[12px] items-center justify-between">
+          {currentItems &&
+            currentItems.map((item, i) => (
+              <ItemCardProtrait
+                data={item}
+                className=" w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]"
+                key={i}
+              />
+            ))}
+        </Flex>
+      </>
     );
   }
 
