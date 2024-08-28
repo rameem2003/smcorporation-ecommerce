@@ -46,7 +46,7 @@ const Header = () => {
       const searchResult = search.filter((searchItem) =>
         searchItem.title.toLowerCase().includes(e.target.value.toLowerCase())
       );
-      setFilterResult(searchResult); // stae for store the search result
+      setFilterResult(searchResult); // state for store the search result
     }
   };
 
@@ -184,10 +184,7 @@ const Header = () => {
                 <Flex className="items-center gap-2 cursor-pointer">
                   <FaUserCircle className=" text-[24px] text-white" />
 
-                  <span
-                    className="hidden lg:block font-bold text-sm
-                  xl:text-xl text-white"
-                  >
+                  <span className="hidden lg:block font-bold text-sm xl:text-xl text-white">
                     Account
                   </span>
                 </Flex>
