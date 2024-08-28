@@ -47,6 +47,7 @@ const Checkout = () => {
       orderTimeStamp: new Date().toLocaleString(),
       orderTimeString: Date.now(),
       cart,
+      grandTotal: total,
       orderStatus: "pending",
     };
 

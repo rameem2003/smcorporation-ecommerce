@@ -123,7 +123,7 @@ const Header = () => {
               </List>
             )}
           </div>
-          <div className="w-6/12 md:w-8/12">
+          <div className="w-6/12 md:w-7/12 xl:w-8/12">
             <div ref={searchResultRef} className=" relative w-full">
               <input
                 onChange={handleSearch}

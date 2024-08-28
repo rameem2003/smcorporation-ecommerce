@@ -32,7 +32,7 @@ const Profile = () => {
 
         <Flex className="mt-5 flex-col md:flex-row gap-10">
           <div className=" w-full md:w-1/2 lg:w-3/12">
-            <h2 className=" font-bold text-xl lg:text-5xl text-black">
+            <h2 className=" font-bold text-xl xl:text-5xl text-black">
               Profile Info
             </h2>
 
@@ -51,11 +51,17 @@ const Profile = () => {
             </div>
           </div>
           <div className=" w-full md:w-1/2 lg:w-9/12">
-            <h2 className=" font-bold text-xl lg:text-5xl text-black text-left lg:text-right">
+            <h2 className=" font-bold text-xl xl:text-5xl text-black text-left lg:text-right">
               Your Order's
             </h2>
 
             <div className="mt-5">
+              {orders.length == 0 && (
+                <p className=" font-bold text-lg text-red-700">
+                  You have no order's in recent past
+                </p>
+              )}
+
               {orders
                 .sort((a, b) => b.orderTimeString - a.orderTimeString)
                 .map((data, i) => (
