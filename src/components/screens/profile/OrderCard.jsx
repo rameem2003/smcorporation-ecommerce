@@ -24,6 +24,9 @@ const OrderCard = ({ data }) => {
             <p className=" font-semibold text-lg text-black">
               Order Date: {data.orderTimeStamp}
             </p>
+            <p className=" font-semibold text-lg text-black">
+              Shipping Agent: {data.shippingAgent}
+            </p>
           </div>
           <div className="w-full lg:w-1/2 text-center lg:text-right">
             {data.orderStatus == "pending" && (
@@ -138,6 +141,10 @@ const OrderCard = ({ data }) => {
               Customer Name: {data.customerName}
             </p>
             <p className=" font-bold text-lg text-black">Phone: {data.phone}</p>
+
+            <p className=" font-bold text-lg text-black">
+              Shipping Agent: {data.shippingAgent}
+            </p>
 
             <Flex className="items-center justify-between flex-wrap gap-5 mb-3">
               <p className="font-normal text-base text-black">

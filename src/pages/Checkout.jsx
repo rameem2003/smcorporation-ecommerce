@@ -49,6 +49,7 @@ const Checkout = () => {
       cart,
       grandTotal: total,
       orderStatus: "pending",
+      shippingAgent: "Not Assigned",
     };
 
     if (address && area && district && postcode) {
