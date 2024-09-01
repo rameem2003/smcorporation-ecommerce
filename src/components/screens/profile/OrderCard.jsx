@@ -34,6 +34,12 @@ const OrderCard = ({ data }) => {
                 Order is pending
               </span>
             )}
+
+            {data.orderStatus == "shipping" && (
+              <span className=" text-right p-1 rounded-full text-purple-500 border-[2px] border-purple-500">
+                Order is shipping
+              </span>
+            )}
             {data.orderStatus == "completed" && (
               <span className=" text-right p-1 rounded-full text-green-500 border-[2px] border-green-500">
                 Order is completed
