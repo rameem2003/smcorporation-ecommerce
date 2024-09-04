@@ -53,7 +53,7 @@ const Shop = () => {
                 ))}
               </select>
             </div>
-            <div className="w-full md:w-4/12">
+            {/* <div className="w-full md:w-4/12">
               <h2 className=" font-semibold text-lg mb-1 text-black">
                 Filter Price
               </h2>
@@ -68,7 +68,7 @@ const Shop = () => {
                 <option value="">Low to High</option>
                 <option value="">High to Low</option>
               </select>
-            </div>
+            </div> */}
 
             <div className="w-full md:w-4/12">
               <h2 className=" font-semibold text-lg mb-1 text-black">Show</h2>
