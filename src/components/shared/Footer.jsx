@@ -82,7 +82,7 @@ const Footer = () => {
           href="https://republic-of-legends.netlify.app/"
           target="_blank"
         >
-          Developed by Mahmood Hassan Rameem || ROL Studio || 2024
+          &copy; Developed by Mahmood Hassan Rameem || ROL Studio || 2024
         </a>
       </div>
     </footer>
