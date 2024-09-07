@@ -29,8 +29,11 @@ const ItemCardProtrait = ({ className, data }) => {
           {data.title.slice(0, 20)}
         </Link>
 
+        <p className=" font-bold text-lg text-center text-red-500">
+          Size: {data.dimensions}
+        </p>
         <p className=" font-bold text-xl text-center text-red-500">
-          ৳ {data.price} BDT
+          {data.price > 0 ? `৳ ${data.price} BDT` : "Price to be announced"}
         </p>
 
         <Flex className="items-center gap-1 mt-2">
@@ -40,12 +43,26 @@ const ItemCardProtrait = ({ className, data }) => {
           >
             <FaRegEye /> View
           </Link>
-          <button
+
+          {data.price > 0 ? (
+            <button
+              onClick={addToCart}
+              className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white"
+            >
+              <FaCartShopping /> Cart
+            </button>
+          ) : (
+            <button className=" pointer-events-none flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white text-gray-400">
+              <FaCartShopping /> Cart
+            </button>
+          )}
+
+          {/* <button
             onClick={addToCart}
             className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white"
           >
             <FaCartShopping /> Cart
-          </button>
+          </button> */}
         </Flex>
       </div>
     </div>

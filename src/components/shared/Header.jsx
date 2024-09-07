@@ -66,9 +66,9 @@ const Header = () => {
      */
 
     const fetchProducts = async () => {
-      const res = await axios.get("https://dummyjson.com/products");
-      dispatch(allProducts(res.data.products));
-      setSearch(res.data.products);
+      const res = await axios.get("https://smcorpapi.vercel.app/api/products");
+      dispatch(allProducts(res.data));
+      setSearch(res.data);
     };
     fetchProducts();
   }, []);

@@ -20,7 +20,9 @@ const ProductDIsplay = () => {
 
   // get the product info
   const fetchProduct = async () => {
-    const res = await axios.get(`https://dummyjson.com/products/${id}`);
+    const res = await axios.get(
+      `https://smcorpapi.vercel.app/api/products/${id}`
+    );
     // let filter = products.filter((item) => item.category == data.category);
     // setRelatedBrands(filter);
     setData(res.data);
@@ -62,29 +64,34 @@ const ProductDIsplay = () => {
             <p className=" font-medium text-base text-gray-500">
               {data.description}
             </p>
+            <p className=" font-bold text-2xl text-red-500">
+              Size: {data.dimensions}
+            </p>
 
             <Flex className="mt-5 gap-5  flex-wrap">
-              <p className=" font-semibold text-lg text-black">
-                Brand:{" "}
+              <p className=" font-semibold text-lg text-black capitalize">
+                Group:{" "}
                 <span className=" font-extrabold text-red-700">
-                  {data.brand}
+                  {data.group}
                 </span>
               </p>
-              <p className=" font-semibold text-lg text-black">
+              <p className=" font-semibold text-lg text-black capitalize">
                 Stock:{" "}
-                <span className=" font-extrabold text-red-700">
-                  {data.stock} available
+                <span className=" font-extrabold text-red-700 capitalize">
+                  {data.stock > 0 || data.stock == "yes"
+                    ? "available"
+                    : "not available"}
                 </span>
               </p>
-              <p className=" font-semibold text-lg text-black">
-                Rating:{" "}
-                <span className=" font-extrabold text-red-700">
-                  {data.rating}
+              <p className=" font-semibold text-lg text-black capitalize">
+                Warrenty:{" "}
+                <span className=" font-extrabold text-red-700 capitalize">
+                  {data.warranty}
                 </span>
               </p>
-              <p className=" font-semibold text-lg text-black">
+              <p className=" font-semibold text-lg text-black capitalize">
                 Return Policy:{" "}
-                <span className=" font-extrabold text-red-700">
+                <span className=" font-extrabold text-red-700 capitalize">
                   {data.returnPolicy}
                 </span>
               </p>
@@ -95,12 +102,19 @@ const ProductDIsplay = () => {
             </h3>
 
             <Flex className="mt-5 gap-5 flex-col lg:flex-row">
-              <button
-                onClick={addToCart}
-                className="flex items-center justify-center gap-2 w-full lg:w-[40%] xl:w-[30%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white"
-              >
-                <FaCartShopping /> Add To Cart Now
-              </button>
+              {data.price > 0 ? (
+                <button
+                  onClick={addToCart}
+                  className="flex items-center justify-center gap-2 w-full lg:w-[40%] xl:w-[30%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white"
+                >
+                  <FaCartShopping /> Add To Cart Now
+                </button>
+              ) : (
+                <button className=" pointer-events-none text-gray-400 flex items-center justify-center gap-2 w-full lg:w-[40%] xl:w-[30%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white">
+                  <FaCartShopping /> Add To Cart Now
+                </button>
+              )}
+
               <button className="flex items-center justify-center gap-2 w-full lg:w-[40%] xl:w-[30%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white">
                 <FaShare /> Share Now
               </button>

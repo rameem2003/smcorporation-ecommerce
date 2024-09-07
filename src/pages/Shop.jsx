@@ -10,6 +10,7 @@ const Shop = () => {
   const [categoryFilter, setCategoryFilter] = useState([]); // state for filter by category
   const [itemShow, setItemShow] = useState(12); // state for item show number
   const [category, setCategory] = useState([]); // state for unique category
+  const [group, setGroup] = useState([]); // state for unique group
 
   // filter products by the category name
   const showByCategory = (cat) => {
@@ -20,8 +21,19 @@ const Shop = () => {
       setCategoryFilter(filterCategory);
     }
   };
+
+  // filter products by the group name
+  const showByGroup = (group) => {
+    if (group == "all") {
+      setCategoryFilter(products);
+    } else {
+      const filterCategory = products.filter((item) => item.group == group);
+      setCategoryFilter(filterCategory);
+    }
+  };
   useEffect(() => {
     setCategory([...new Set(products.map((item) => item.category))]);
+    setGroup([...new Set(products.map((item) => item.group))]);
     setCategoryFilter(products);
   }, [products]);
 
@@ -42,6 +54,9 @@ const Shop = () => {
                 name=""
                 id=""
               >
+                <option selected disabled value="">
+                  Choose Category
+                </option>
                 <option className=" capitalize" value="all">
                   All
                 </option>
@@ -53,22 +68,27 @@ const Shop = () => {
                 ))}
               </select>
             </div>
-            {/* <div className="w-full md:w-4/12">
+            <div className="w-full md:w-4/12">
               <h2 className=" font-semibold text-lg mb-1 text-black">
-                Filter Price
+                Filter Group
               </h2>
               <select
-                className=" w-full p-3 rounded-xl border-[1px] border-red-500"
+                onChange={(e) => showByGroup(e.target.value)}
+                className=" w-full p-3 rounded-xl border-[1px] border-red-500 capitalize"
                 name=""
                 id=""
               >
-                <option disabled value="">
-                  Choose Category
+                <option selected disabled value="">
+                  Choose Group
                 </option>
-                <option value="">Low to High</option>
-                <option value="">High to Low</option>
+                <option value="all">All</option>
+                {group.map((item, i) => (
+                  <option className="capitalize" value={item} key={i}>
+                    {item}
+                  </option>
+                ))}
               </select>
-            </div> */}
+            </div>
 
             <div className="w-full md:w-4/12">
               <h2 className=" font-semibold text-lg mb-1 text-black">Show</h2>

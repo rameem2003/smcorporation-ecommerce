@@ -80,12 +80,14 @@ const PaginationForGrid = ({ itemsPerPage, products }) => {
           breakLabel="..."
           className=" flex gap-4 ml-[-15px] justify-center "
           activeClassName="bg-red-500 text-white"
-          pageClassName=" p-5 border-[1px] border-[#F0F0F0] font-dm font-normal text-base text-secondary"
-          nextLabel=""
+          pageClassName=" p-5 border-[1px] border-[#F0F0F0] font-normal text-base text-secondary"
+          nextLabel=">"
+          nextClassName="p-5  font-normal bg-black text-base text-white"
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
           pageCount={pageCount}
-          previousLabel=""
+          previousLabel="<"
+          previousClassName="p-5  font-normal bg-black text-base text-white"
           renderOnZeroPageCount={null}
         />
 
