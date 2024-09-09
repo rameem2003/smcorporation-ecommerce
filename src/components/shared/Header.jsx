@@ -117,7 +117,7 @@ const Header = () => {
                     key={i}
                     className=" capitalize font-bold text-xl text-white px-2 py-4 block duration-300 ease-in-out hover:pl-5 hover:bg-red-700"
                   >
-                    <Link>{item}</Link>
+                    <Link to={`/products/viewcategories/${item}`}>{item}</Link>
                   </ListItem>
                 ))}
               </List>

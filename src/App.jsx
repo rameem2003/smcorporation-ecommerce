@@ -17,6 +17,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ProductDIsplay from "./pages/ProductDIsplay";
 import Profile from "./pages/Profile";
 import ProtectorRoute from "./routes/ProtectorRoute";
+import ViewCategories from "./pages/ViewCategories";
 
 function App() {
   const customerdata = useSelector((state) => state.user.user); // get customer info from the redux
@@ -27,6 +28,10 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:id" element={<ProductDIsplay />} />
+        <Route
+          path="/products/viewcategories/:cat"
+          element={<ViewCategories />}
+        />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />

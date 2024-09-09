@@ -34,8 +34,8 @@ const Rootlayout = () => {
         } duration-200 ease-in-out`}
       >
         <Navigation />
-        <Header />
       </div>
+      <Header />
       <Outlet />
       <Footer />
     </>
