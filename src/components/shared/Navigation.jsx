@@ -49,8 +49,8 @@ const Navigation = () => {
                 </Link>
               </ListItem>
               <ListItem>
-                <Link className="font-bold text-lg text-red-700" to="/dealers">
-                  Our Dealers
+                <Link className="font-bold text-lg text-red-700" to="/news">
+                  News & Updates
                 </Link>
               </ListItem>
             </List>

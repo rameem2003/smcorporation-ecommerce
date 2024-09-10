@@ -81,6 +81,22 @@ const Services = () => {
             </Link>
           </div>
         </Flex>
+
+        <div className=" my-10 text-center">
+          <h2 className="font-bold text-3xl 2xl:text-4xl">
+            Why You Choose SPL Fittings
+          </h2>
+
+          <p className="mt-5 font-semibold text-xl">
+            SPL company has an established reputation for providing affordable
+            PVC pipe fittings in the local market. We allow our customers to
+            conveniently shop for and buy, offering unparalleled choice and
+            unbeatable value to customers throughout Bangladesh. We pride
+            ourselves on stocking an extensive range of quality products,
+            perfect for performing any bathroom task and pipe fittings in
+            building builds.
+          </p>
+        </div>
       </Container>
     </section>
   );
