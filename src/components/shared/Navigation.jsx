@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 import { FaBars, FaFacebook, FaPhone } from "react-icons/fa6";
 
 const Navigation = () => {
-  const [tog, setTog] = useState(false);
-  const togref = useRef();
+  const [tog, setTog] = useState(false); // mobile view toggle
+  const togref = useRef(); // mobile view toggle ref
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
@@ -59,7 +59,11 @@ const Navigation = () => {
             <Flex className="items-center justify-end gap-4">
               <List className="flex items-end flex-row justify-end gap-3 xl:gap-5">
                 <ListItem>
-                  <a className="flex items-center gap-2" href="">
+                  <a
+                    className="flex items-center gap-2"
+                    href="https://www.facebook.com/groups/954625342098929"
+                    target="_blank"
+                  >
                     <FaFacebook className="text-[20px] text-blue-500" />
                     <span className=" font-bold hidden lg:block xl:text-lg text-black">
                       Facebook
@@ -67,10 +71,10 @@ const Navigation = () => {
                   </a>
                 </ListItem>
                 <ListItem>
-                  <a className="flex items-center gap-2" href="">
+                  <a className="flex items-center gap-2" href="tel:01748121515">
                     <FaPhone className="text-[20px] text-black" />
                     <span className=" font-bold hidden lg:block xl:text-lg text-black">
-                      05141841844
+                      01748-121515
                     </span>
                   </a>
                 </ListItem>
