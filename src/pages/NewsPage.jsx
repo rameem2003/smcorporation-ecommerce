@@ -14,16 +14,12 @@ const NewsPage = () => {
   // function for fetch the news
   const fetchNews = async () => {
     const res = await axios.get("https://smcorpapi.vercel.app/api/news");
-
-    console.log(res.data);
     setNews(res.data);
   };
 
   useEffect(() => {
     fetchNews();
   }, []);
-
-  console.log(news);
 
   return (
     <section className="my-10">
