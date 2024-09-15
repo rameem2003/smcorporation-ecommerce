@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import banner from "../../../assets/banner.png";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Flex from "./../../common/Flex";
 import Image from "../../common/Image";
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Banner = () => {
   const [slide, setSlide] = useState(0);
+  const [allBanners, setAllBanners] = useState([]);
   const [bannerData, setBannerData] = useState({});
   const settings = {
     arrows: false,
@@ -66,19 +69,30 @@ const Banner = () => {
 
   const fetchData = async () => {
     const res = await axios.get("https://smcorpapi.vercel.app/api/banner");
-    console.log(res.data[0]);
-    setBannerData(res.data[0]);
+    // console.log(res.data[res.data.length - 1]);
+    setAllBanners(res.data);
+    setBannerData(res.data[res.data.length - 1]);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  // console.log(allBanners);
+
   return (
     <section>
+      {allBanners.length == 0 && (
+        <div className="w-full">
+          <Skeleton height={350} />
+        </div>
+      )}
       <Slider {...settings}>
         {bannerData?.banners?.map((data, i) => (
-          <Image className="w-full" src={data.url} alt="banner" />
+          <>
+            {/* {console.log(data.url)} */}
+            <Image className="w-full" src={data.url} alt="banner" key={i} />
+          </>
         ))}
       </Slider>
     </section>
