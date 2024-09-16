@@ -71,10 +71,10 @@ const Navigation = () => {
                   </a>
                 </ListItem>
                 <ListItem>
-                  <a className="flex items-center gap-2" href="tel:01748121515">
+                  <a className="flex items-center gap-2" href="tel:01921676695">
                     <FaPhone className="text-[20px] text-black" />
                     <span className=" font-bold hidden lg:block xl:text-lg text-black">
-                      01748-121515
+                      01921-676695
                     </span>
                   </a>
                 </ListItem>

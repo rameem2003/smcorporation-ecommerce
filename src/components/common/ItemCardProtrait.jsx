@@ -17,8 +17,12 @@ const ItemCardProtrait = ({ className, data }) => {
   return (
     <div className={`${className} border-[1px] border-gray-500 p-2`}>
       <Toaster position="top-right" reverseOrder={false} />
-      <div className="w-full">
-        <Image className="mx-auto" src={data.thumbnail} alt="item" />
+      <div className="w-full h-[250px]">
+        <Image
+          className="mx-auto h-full object-cover w-full"
+          src={data.thumbnail}
+          alt="item"
+        />
       </div>
 
       <div>

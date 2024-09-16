@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Container from "../../common/Container";
 
 const Banner = () => {
   const [slide, setSlide] = useState(0);
@@ -17,7 +18,7 @@ const Banner = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -81,7 +82,7 @@ const Banner = () => {
   // console.log(allBanners);
 
   return (
-    <section>
+    <section className="shadow-custom">
       {allBanners.length == 0 && (
         <div className="w-full">
           <Skeleton height={350} />
@@ -89,10 +90,12 @@ const Banner = () => {
       )}
       <Slider {...settings}>
         {bannerData?.banners?.map((data, i) => (
-          <>
-            {/* {console.log(data.url)} */}
-            <Image className="w-full" src={data.url} alt="banner" key={i} />
-          </>
+          <Image
+            className="w-full sm:h-auto lg:h-[750px]  "
+            src={data.url}
+            alt="banner"
+            key={i}
+          />
         ))}
       </Slider>
     </section>

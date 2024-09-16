@@ -50,7 +50,10 @@ const ProductDIsplay = () => {
 
         <Flex className="mt-[100px] gap-10 flex-col lg:flex-row">
           <div className=" w-full lg:w-5/12 lg: p-5 border-[2px] border-black">
-            <Image className="w-full h-full" src={data.thumbnail} />
+            <Image
+              className="w-full h-[300px] md:h-[600px]"
+              src={data.thumbnail}
+            />
           </div>
           <div className=" w-full lg:w-7/12">
             <h4 className=" font-semibold text-base md:text-lg xl:text-xl 2xl:text-2xl text-red-700 capitalize">

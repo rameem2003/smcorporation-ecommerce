@@ -48,10 +48,13 @@ const NewsPage = () => {
         <Flex className="my-10 items-center gap-5 flex-wrap">
           {news.map((data, i) => (
             <div
-              className="w-full md:w-[45%] lg:w-[30%] xl:w-[25%] p-2 border-[2px] border-black relative"
+              className=" w-full md:w-[45%] lg:w-[30%] xl:w-[25%] p-2 border-[2px] border-black relative"
               key={i}
             >
-              <Image src={data.thumbnail} />
+              <Image
+                className="h-[200px] w-full object-cover"
+                src={data.thumbnail}
+              />
               <div>
                 <h2 className=" font-bold text-3xl">{data.title}</h2>
                 <p className=" font-medium text-lg text-gray-500">
