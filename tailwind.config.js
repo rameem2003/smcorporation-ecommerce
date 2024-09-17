@@ -9,6 +9,8 @@ export default {
 
       backgroundImage: {
         bgScreen: "url(/bg1.jpg)",
+        lenear:
+          "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(0,0,0,0.8) 85%)",
       },
 
       fontFamily: {
