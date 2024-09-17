@@ -22,7 +22,24 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (name && phone && password) {
+    // Regular expression to check for English letters (A-Z, a-z)
+    const englishRegex = /^[a-zA-Z\s]*$/;
+    const numberRegex = /^[0-9]+$/;
+
+    if (!englishRegex.test(name)) {
+      toast.error("Pls Enter Name In English");
+      setLoading(false);
+    }
+
+    if (!numberRegex.test(phone)) {
+      toast.error("Pls Enter Phone Number In English");
+      setLoading(false);
+    }
+
+    if (phone.length != 11) {
+      toast.error("Pls Enter 11 Digit Valid Phone Number");
+      setLoading(false);
+    } else if (name && phone && password) {
       let newCustomer = {
         id: uuidv4(),
         name,

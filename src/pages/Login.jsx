@@ -22,7 +22,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (phone && password) {
+    // Regular expression to check for English letters (A-Z, a-z)
+    const englishRegex = /^[a-zA-Z\s]*$/;
+    const numberRegex = /^[0-9]+$/;
+
+    if (!numberRegex.test(phone)) {
+      toast.error("Pls Enter Phone Number In English");
+      setLoading(false);
+    } else if (phone.length != 11) {
+      toast.error("Pls Enter 11 Digit Valid Phone Number");
+      setLoading(false);
+    } else if (phone && password) {
       let customer = {
         phone,
         password,

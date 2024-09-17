@@ -83,21 +83,31 @@ const Banner = () => {
 
   return (
     <section className="shadow-custom">
-      {allBanners.length == 0 && (
-        <div className="w-full">
-          <Skeleton height={350} />
+      <Flex className="items-center justify-between">
+        <div className="hidden md:block  md:w-[17.5%] text-center">
+          <p>content coming soon</p>
         </div>
-      )}
-      <Slider {...settings}>
-        {bannerData?.banners?.map((data, i) => (
-          <Image
-            className="w-full sm:h-auto lg:h-[750px]  "
-            src={data.url}
-            alt="banner"
-            key={i}
-          />
-        ))}
-      </Slider>
+        <div className="w-full  md:w-[65%]">
+          {allBanners.length == 0 && (
+            <div className="w-full">
+              <Skeleton height={350} />
+            </div>
+          )}
+          <Slider {...settings}>
+            {bannerData?.banners?.map((data, i) => (
+              <Image
+                className="w-full sm:h-auto xl:h-[600px]  "
+                src={data.url}
+                alt="banner"
+                key={i}
+              />
+            ))}
+          </Slider>
+        </div>
+        <div className="hidden md:block  md:w-[17.5%] text-center">
+          <p>content coming soon</p>
+        </div>
+      </Flex>
     </section>
   );
 };
