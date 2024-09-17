@@ -111,7 +111,7 @@ const Header = () => {
               </Flex>
             </div>
             {toggleCategory && (
-              <List className=" w-[300px] md:w-[300px] bg-red-600 absolute top-[48px] left-0 md:left-[18px] z-50">
+              <List className=" w-[300px] md:w-[300px] bg-red-600 absolute top-[48px] left-0 md:left-[18px] z-[100]">
                 {category.map((item, i) => (
                   <ListItem
                     key={i}
