@@ -94,12 +94,12 @@ const Banner = () => {
   return (
     <section className="shadow-custom">
       <Flex className="items-center justify-between gap-1">
-        <div className="hidden md:block md:w-[25%]  lg:w-[17.5%] text-center h-[330px] xl:h-[600px] group overflow-hidden">
+        <div className="hidden md:block md:w-[25%]  lg:w-[17.5%] text-center h-[255px] lg:h-[300px] group overflow-hidden">
           <div className="w-full h-full relative">
             <Image
               className="w-full h-full duration-700 ease-in-out group-hover:scale-[1.2]"
               src={array[0]?.thumbnail}
-              alt="caption"
+              alt="loading....."
             />
             <div className=" absolute h-full w-full top-0 left-0 bg-lenear z-50 p-3 flex justify-end flex-col ">
               <h2 className=" font-bold text-3xl text-white">
@@ -128,7 +128,7 @@ const Banner = () => {
           <Slider {...settings}>
             {bannerData?.banners?.map((data, i) => (
               <Image
-                className="w-full sm:h-auto lg:h-[330px] xl:h-[600px]  "
+                className="w-full sm:h-auto lg:h-[330px] xl:h-[600px] "
                 src={data.url}
                 alt="banner"
                 key={i}
@@ -136,12 +136,12 @@ const Banner = () => {
             ))}
           </Slider>
         </div>
-        <div className="hidden md:block md:w-[25%]  lg:w-[17.5%] text-center h-[330px] xl:h-[600px] group overflow-hidden">
+        <div className="hidden md:block md:w-[25%]  lg:w-[17.5%] text-center h-[255px] lg:h-[300px] group overflow-hidden">
           <div className="w-full h-full relative">
             <Image
               className="w-full h-full duration-700 ease-in-out group-hover:scale-[1.2]"
               src={array[1]?.thumbnail}
-              alt="caption"
+              alt="loading....."
             />
             <div className=" absolute h-full w-full top-0 left-0 bg-lenear z-50 p-3 flex justify-end flex-col ">
               <h2 className=" font-bold text-3xl text-white">
