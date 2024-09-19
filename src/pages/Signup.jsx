@@ -4,9 +4,9 @@ import axios from "axios";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import ButtonAnimation from "../components/common/ButtonAnimation";
+import toast, { Toaster } from "react-hot-toast";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
   const navigate = useNavigate(); // navigation instance

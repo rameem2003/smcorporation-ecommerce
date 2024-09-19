@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Flex from "./../../common/Flex";
 import Image from "../../common/Image";
@@ -7,8 +8,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Container from "../../common/Container";
-import { Link } from "react-router-dom";
 
 const Banner = () => {
   const [slide, setSlide] = useState(0);

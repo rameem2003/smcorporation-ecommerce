@@ -137,7 +137,7 @@ const Header = () => {
               <FaSearch className=" text-[24px] text-black absolute right-3 top-[50%] translate-y-[-50%]" />
 
               {searchRef && (
-                <div className="w-full max-h-[300px] overflow-y-scroll bg-white fixed md:absolute top-[140px] md:top-14 left-0 z-[1]">
+                <div className="w-full max-h-[300px] overflow-y-scroll bg-white fixed md:absolute top-[140px] md:top-14 left-0 z-[100]">
                   {filterResult.length > 0 ? (
                     filterResult.map((filterItem, i) => (
                       <Flex
@@ -193,7 +193,7 @@ const Header = () => {
               {toggleAccount && (
                 <>
                   {customerdata.status ? (
-                    <div className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-50">
+                    <div className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-[100]">
                       <h3 className=" font-medium text-lg text-white">
                         Welcome,
                       </h3>
@@ -222,7 +222,7 @@ const Header = () => {
                       </Flex>
                     </div>
                   ) : (
-                    <Flex className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-50 gap-2">
+                    <Flex className="w-[300px] p-3 bg-red-600 absolute top-[48px] right-0 z-[100] gap-2">
                       <button
                         onClick={() => navigate("/login")}
                         className="flex items-center justify-center gap-2 w-[50%] p-2 border-[1px] border-white font-semibold text-lg text-white"
@@ -257,7 +257,7 @@ const Header = () => {
               </div>
 
               {toggleCart && (
-                <div className=" w-[300px] md:w-[360px] p-3 bg-slate-800 absolute top-[48px] right-0 z-50 ">
+                <div className=" w-[300px] md:w-[360px] p-3 bg-slate-800 absolute top-[48px] right-0 z-[100]">
                   <div className="max-h-[220px] overflow-y-scroll no-scrollbar">
                     {cart.length > 0 ? (
                       cart.map((item, i) => (

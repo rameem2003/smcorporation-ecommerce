@@ -3,11 +3,11 @@ import axios from "axios";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
 import ButtonAnimation from "../components/common/ButtonAnimation";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { signInUser } from "../redux/features/AuthSlice";
-import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const dispatch = useDispatch(); // dispatch instance
