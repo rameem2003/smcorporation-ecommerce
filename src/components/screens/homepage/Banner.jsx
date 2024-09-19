@@ -94,7 +94,7 @@ const Banner = () => {
   return (
     <section className="shadow-custom">
       <Flex className="items-center justify-between gap-1">
-        <div className="hidden md:block md:w-[25%]  lg:w-[17.5%] text-center h-[255px] lg:h-[300px] group overflow-hidden">
+        <div className="hidden md:block md:w-[25%] lg:w-[20%] xl:w-[25%] 2xl:w-[17.5%] text-center h-[255px] xl:h-[380px] group overflow-hidden">
           <div className="w-full h-full relative">
             <Image
               className="w-full h-full duration-700 ease-in-out group-hover:scale-[1.2]"
@@ -119,7 +119,7 @@ const Banner = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-[50%]  lg:w-[65%]">
+        <div className="w-full md:w-[50%] lg:w-[60%] xl:w-[50%] 2xl:w-[65%]">
           {allBanners.length == 0 && (
             <div className="w-full">
               <Skeleton height={350} />
@@ -128,7 +128,7 @@ const Banner = () => {
           <Slider {...settings}>
             {bannerData?.banners?.map((data, i) => (
               <Image
-                className="w-full sm:h-auto lg:h-[330px] xl:h-[600px] "
+                className="w-full h-[255px] xl:h-[380px] object-cover"
                 src={data.url}
                 alt="banner"
                 key={i}
@@ -136,7 +136,7 @@ const Banner = () => {
             ))}
           </Slider>
         </div>
-        <div className="hidden md:block md:w-[25%]  lg:w-[17.5%] text-center h-[255px] lg:h-[300px] group overflow-hidden">
+        <div className="hidden md:block md:w-[25%] lg:w-[20%] xl:w-[25%] 2xl:w-[17.5%] text-center h-[255px] xl:h-[380px] group overflow-hidden">
           <div className="w-full h-full relative">
             <Image
               className="w-full h-full duration-700 ease-in-out group-hover:scale-[1.2]"

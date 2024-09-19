@@ -30,7 +30,9 @@ const Rootlayout = () => {
     <>
       <div
         className={`${
-          scrolled ? "fixed w-full top-0 left-0 z-[1000]" : "static"
+          scrolled
+            ? "fixed w-full top-0 left-0 z-[1000] shadow-custom"
+            : "static shadow-none"
         } duration-200 ease-in-out`}
       >
         <Navigation />
