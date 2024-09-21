@@ -68,7 +68,7 @@ const OrderCard = ({ data }) => {
 
         <div className="">
           {data.cart?.map((item, i) => (
-            <Flex key={i} className="gap-5 flex-col lg:flex-row">
+            <Flex key={i} className="gap-5 flex-col lg:flex-row mb-5">
               <div className="w-full lg:w-7/12">
                 <h3 className=" font-bold text-xl text-red-700 mb-1">
                   {item.title}
@@ -91,7 +91,7 @@ const OrderCard = ({ data }) => {
               </div>
               <div className="w-full lg:w-5/12">
                 <Image
-                  className="w-[200px] h-[200px] mx-auto lg:ml-auto"
+                  className="w-[120px] h-[120px] mx-auto lg:ml-auto"
                   src={item.thumbnail}
                 />
               </div>
@@ -99,14 +99,14 @@ const OrderCard = ({ data }) => {
           ))}
         </div>
 
-        <Flex className="items-center justify-between">
-          <h3 className=" font-bold text-3xl text-black">
+        <Flex className="items-center justify-between flex-col lg:flex-row gap-5">
+          <h3 className=" font-bold text-base lg:text-3xl text-black">
             Grand Total: ৳ {data.grandTotal} BDT
           </h3>
 
           <button
             onClick={() => setPrintScreen(!printScreen)}
-            className=" p-2 bg-black font-semibold text-base text-white"
+            className=" p-2 bg-black font-semibold text-sm lg:text-base text-white"
           >
             Generate Invoice
           </button>
@@ -146,9 +146,12 @@ const OrderCard = ({ data }) => {
             <p className=" font-bold text-lg text-black">
               Customer Name: {data.customerName}
             </p>
+            <p className=" font-bold text-lg text-black capitalize">
+              Customer type: {data.customerType}
+            </p>
             <p className=" font-bold text-lg text-black">Phone: {data.phone}</p>
 
-            <p className=" font-bold text-lg text-black">
+            <p className=" font-bold text-lg text-black ">
               Shipping Agent: {data.shippingAgent}
             </p>
 

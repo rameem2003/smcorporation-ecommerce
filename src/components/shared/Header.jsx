@@ -205,6 +205,9 @@ const Header = () => {
                       <p className="font-normal text-base text-white">
                         Phone: {customerdata.phone}
                       </p>
+                      <p className="font-normal text-base text-white capitalize">
+                        Customer Type: {customerdata.type}
+                      </p>
 
                       <Flex className="mt-5 gap-2">
                         <Link
@@ -273,7 +276,7 @@ const Header = () => {
                           <div className="w-9/12">
                             <Flex className="items-center justify-between">
                               <h3 className=" font-medium text-lg text-white group-hover:text-black">
-                                {item.title.slice(0, 20)}
+                                {item.title.slice(0, 23)}
                               </h3>
 
                               <FaTimes
@@ -282,6 +285,9 @@ const Header = () => {
                               />
                             </Flex>
 
+                            <p className=" font-semibold text-base text-white group-hover:text-black">
+                              Size: {item.dimensions}
+                            </p>
                             <p className=" font-semibold text-base text-white group-hover:text-black">
                               Qun: x {item.qun}
                             </p>

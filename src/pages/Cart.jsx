@@ -52,11 +52,13 @@ const Cart = () => {
                   className=" w-full md:w-[48%] border-[1px] border-[#F0F0F0] p-2"
                 >
                   <div className="relative w-full h-auto">
-                    <Image
-                      className="w-full h-full"
-                      src={data.thumbnail}
-                      alt="item"
-                    />
+                    <div className="w-full h-[300px]">
+                      <Image
+                        className="w-full h-full"
+                        src={data.thumbnail}
+                        alt="item"
+                      />
+                    </div>
                     <FaTimes
                       onClick={() => removeItemFromCart(data)}
                       className=" absolute top-1 right-1 cursor-pointer"
@@ -73,6 +75,10 @@ const Cart = () => {
                     >
                       {data.title}
                     </Link>
+
+                    <p className=" font-semibold text-base text-center mt-2">
+                      Size: {data.dimensions}
+                    </p>
                     <Flex
                       className={`my-5 border-[1px] border-[#F0F0F0] w-[50%] items-center justify-center mx-auto`}
                     >
@@ -143,12 +149,18 @@ const Cart = () => {
                         className={`w-[100px] h-[100px]`}
                         src={data.thumbnail}
                       />
-                      <Link
-                        to={`/product/${data.id}`}
-                        className=" font-dm font-bold text-[16px] text-black hover:underline"
-                      >
-                        {data.title}
-                      </Link>
+                      <div>
+                        <Link
+                          to={`/product/${data.id}`}
+                          className=" font-dm font-bold text-[16px] text-black hover:underline"
+                        >
+                          {data.title}
+                        </Link>
+
+                        <p className=" font-semibold text-base mt-2">
+                          Size: {data.dimensions}
+                        </p>
+                      </div>
                     </Flex>
                   </Flex>
                 </div>

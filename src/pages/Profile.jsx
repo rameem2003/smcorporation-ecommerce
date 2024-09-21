@@ -16,8 +16,6 @@ const Profile = () => {
 
     let filtered = res.data.filter((item) => item.phone == customerdata.phone);
 
-    console.log(filtered);
-
     setOrders(filtered);
   };
 
@@ -30,8 +28,8 @@ const Profile = () => {
       <Container>
         <BreadCrums location="Profile" />
 
-        <Flex className="mt-5 flex-col md:flex-row gap-10">
-          <div className=" w-full md:w-1/2 lg:w-3/12">
+        <Flex className="mt-5 flex-col lg:flex-row gap-10">
+          <div className=" w-full  lg:w-3/12">
             <h2 className=" font-bold text-xl xl:text-5xl text-black">
               Profile Info
             </h2>
@@ -48,9 +46,12 @@ const Profile = () => {
               <h3 className=" font-semibold text-xl text-black text-center">
                 Phone: {customerdata.phone}
               </h3>
+              <h3 className=" font-semibold text-xl text-black text-center capitalize">
+                Customer Type: {customerdata.type}
+              </h3>
             </div>
           </div>
-          <div className=" w-full md:w-1/2 lg:w-9/12">
+          <div className=" w-full  lg:w-9/12">
             <h2 className=" font-bold text-xl xl:text-5xl text-black text-left lg:text-right">
               Your Order's
             </h2>

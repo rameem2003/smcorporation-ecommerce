@@ -12,6 +12,7 @@ const Signup = () => {
   const navigate = useNavigate(); // navigation instance
   // states for get the user signup info
   const [name, setName] = useState("");
+  const [customerType, setCustomerType] = useState("individual");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [passwordToggle, setPasswordToggle] = useState(false);
@@ -43,9 +44,10 @@ const Signup = () => {
       let newCustomer = {
         id: uuidv4(),
         name,
+        customerType,
         phone,
         password,
-        create: new Date().toLocaleString(),
+        created: new Date().toLocaleString(),
       };
 
       try {
@@ -85,7 +87,7 @@ const Signup = () => {
         <form
           onSubmit={handleSignup}
           action=""
-          className=" w-full md:w-[450px] mx-auto p-2 border-[1px] border-[#F0F0F0]"
+          className=" w-full md:w-[450px] mx-auto p-2 border-[1px] border-[#F0F0F0] mt-10"
         >
           <h2 className="font-semibold text-2xl text-center mb-5">
             New Account
@@ -103,6 +105,28 @@ const Signup = () => {
               type="text"
               required
             />
+          </div>
+
+          <div className=" mb-5 w-full">
+            <label className=" font-medium text-base text-black" htmlFor="">
+              I am
+            </label>
+
+            <select
+              onChange={(e) => setCustomerType(e.target.value)}
+              value={customerType}
+              className="w-full h-full border-[1px] border-black p-2  font-kanit font-medium text-base xl:text-xl"
+              name=""
+              id=""
+              required
+            >
+              <option id="1" value="individual">
+                an Individual Customer
+              </option>
+              <option id="2" value="reseller shop holder">
+                a Reseller
+              </option>
+            </select>
           </div>
           <div className=" mb-5 w-full">
             <label className=" font-medium text-base text-black" htmlFor="">

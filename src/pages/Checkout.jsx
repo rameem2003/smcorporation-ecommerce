@@ -7,8 +7,10 @@ import SuccessfullScreen from "../components/screens/CheckoutPage/SuccessfullScr
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { cartClear } from "../redux/features/CartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const navigate = useNavigate(); // navigation instance
   const customerData = useSelector((state) => state.user.user); // get customer data from rudux
   const cart = useSelector((state) => state.cartArray.cart); // get cart info from the redux
   const dispatch = useDispatch(); // disapatch instance
@@ -32,6 +34,13 @@ const Checkout = () => {
     calculateTotal();
   });
 
+  // check if the customer are logged in
+  useEffect(() => {
+    if (customerData.status == false) {
+      navigate("/login");
+    }
+  }, []);
+
   // function for checkout
   const handleCheckout = async (e) => {
     e.preventDefault();
@@ -39,6 +48,7 @@ const Checkout = () => {
     let orderInvoiceData = {
       orderID: uuidv4(),
       customerName: customerData.user,
+      customerType: customerData.type,
       phone: customerData.phone,
       address,
       area,
@@ -63,8 +73,6 @@ const Checkout = () => {
             },
           }
         );
-
-        console.log(res);
 
         setIsSuccess(true);
 
