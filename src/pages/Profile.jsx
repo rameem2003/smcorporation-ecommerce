@@ -23,8 +23,15 @@ const Profile = () => {
     fecthOrderslist();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
-    <section className="my-10">
+    <main className="my-10">
       <Container>
         <BreadCrums location="Profile" />
 
@@ -72,7 +79,7 @@ const Profile = () => {
           </div>
         </Flex>
       </Container>
-    </section>
+    </main>
   );
 };
 

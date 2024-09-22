@@ -21,8 +21,15 @@ const NewsPage = () => {
     fetchNews();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
-    <section className="my-10">
+    <main className="my-10">
       <Container>
         <BreadCrums location="News & Updates" />
 
@@ -67,7 +74,7 @@ const NewsPage = () => {
             ))}
         </Flex>
       </Container>
-    </section>
+    </main>
   );
 };
 

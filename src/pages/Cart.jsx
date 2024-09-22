@@ -36,8 +36,15 @@ const Cart = () => {
   useEffect(() => {
     calculateTotal();
   });
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
-    <section className="my-10">
+    <main className="my-10">
       <Container>
         <Toaster />
         <BreadCrums location="Cart" />
@@ -248,7 +255,7 @@ const Cart = () => {
           {/* totals end */}
         </div>
       </Container>
-    </section>
+    </main>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Container from "../components/common/Container";
 import BreadCrums from "../components/common/BreadCrums";
@@ -66,8 +66,15 @@ const Login = () => {
       }
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
-    <section className=" my-10">
+    <main className=" my-10">
       <Container>
         <Toaster position="top-right" reverseOrder={false} />
         <BreadCrums location="Login" />
@@ -141,7 +148,7 @@ const Login = () => {
           </p>
         </form>
       </Container>
-    </section>
+    </main>
   );
 };
 

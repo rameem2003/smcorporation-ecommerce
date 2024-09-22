@@ -24,8 +24,15 @@ const ViewCategories = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
-    <section className="my-10">
+    <main className="my-10">
       <Container>
         <BreadCrums location={cat} />
 
@@ -45,7 +52,7 @@ const ViewCategories = () => {
           )}
         </div>
       </Container>
-    </section>
+    </main>
   );
 };
 

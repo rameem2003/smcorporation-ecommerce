@@ -43,7 +43,7 @@ const ProductDIsplay = () => {
   }, []);
 
   return (
-    <section className="my-10">
+    <main className="my-10">
       <Container>
         <Toaster position="top-right" reverseOrder={false} />
         <BreadCrums location="Product" />
@@ -138,7 +138,7 @@ const ProductDIsplay = () => {
           ))}
         </Flex> */}
       </Container>
-    </section>
+    </main>
   );
 };
 

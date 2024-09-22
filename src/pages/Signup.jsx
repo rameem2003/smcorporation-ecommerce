@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import Container from "../components/common/Container";
@@ -78,8 +78,15 @@ const Signup = () => {
       }
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
-    <section className="my-10">
+    <main className="my-10">
       <Toaster position="top-right" reverseOrder={false} />
       <Container>
         <BreadCrums location="Signup" />
@@ -188,7 +195,7 @@ const Signup = () => {
           </p>
         </form>
       </Container>
-    </section>
+    </main>
   );
 };
 

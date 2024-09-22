@@ -8,6 +8,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { cartClear } from "../redux/features/CartSlice";
 import { useNavigate } from "react-router-dom";
+import { districts } from "../constants/constant";
+import ProcessingAnimation from "../components/common/ProcessingAnimation";
 
 const Checkout = () => {
   const navigate = useNavigate(); // navigation instance
@@ -21,6 +23,7 @@ const Checkout = () => {
   const [district, setDistrict] = useState("");
   const [postcode, setPostcode] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0); // for calculate & store the price
 
   // calculate the grand total
@@ -41,9 +44,17 @@ const Checkout = () => {
     }
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   // function for checkout
   const handleCheckout = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     let orderInvoiceData = {
       orderID: uuidv4(),
@@ -73,23 +84,22 @@ const Checkout = () => {
             },
           }
         );
-
+        setLoading(false);
         setIsSuccess(true);
-
         dispatch(cartClear());
       } catch (error) {
         console.log(error);
+        setLoading(false);
         setIsSuccess(false);
       }
     }
-
-    // console.log(orderInvoiceData);
   };
 
   return (
-    <section className="my-10 relative">
+    <main className="my-10 relative">
       <Container>
         <BreadCrums location="Checkout" />
+        {loading && <ProcessingAnimation />}
 
         {cart.length == 0 && (
           <p className="p-3 bg-red-700 font-semibold text-xl text-center text-white">
@@ -146,13 +156,23 @@ const Checkout = () => {
                     Your District
                   </label>
 
-                  <input
+                  <select
+                    name=""
+                    id=""
+                    className="w-full h-full border-[1px] border-black p-2  font-kanit font-medium text-base xl:text-xl"
                     onChange={(e) => setDistrict(e.target.value)}
                     value={district}
-                    className="w-full h-full border-[1px] border-black p-2  font-kanit font-medium text-base xl:text-xl"
-                    type="text"
                     required
-                  />
+                  >
+                    <option selected disabled value="">
+                      Select
+                    </option>
+                    {districts.map((data, i) => (
+                      <option value={data} key={i}>
+                        {data}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className=" mb-5 w-full">
                   <label
@@ -241,7 +261,7 @@ const Checkout = () => {
           </Flex>
         </div>
       </Container>
-    </section>
+    </main>
   );
 };
 
