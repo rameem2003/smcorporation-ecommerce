@@ -18,6 +18,8 @@ const ProductDIsplay = () => {
   const [data, setData] = useState({}); // state for store product info
   const [relatedBrands, setRelatedBrands] = useState([]); // state for related products
 
+  console.log(data);
+
   // get the product info
   const fetchProduct = async () => {
     const res = await axios.get(
@@ -32,6 +34,14 @@ const ProductDIsplay = () => {
   const addToCart = () => {
     dispatch(cartReducer({ ...data, qun: 1 }));
     toast.success("Item is added");
+  };
+
+  // function for copy the product link
+  const handleShare = () => {
+    let link = `https://www.mssmcorporation.com/product/${id}`;
+    navigator.clipboard
+      .writeText(link)
+      .then(() => toast.success("Item is added"));
   };
 
   useEffect(() => {
@@ -49,13 +59,13 @@ const ProductDIsplay = () => {
         <BreadCrums location="Product" />
 
         <Flex className="mt-[100px] gap-10 flex-col lg:flex-row">
-          <div className=" w-full lg:w-5/12 lg: p-5 border-[2px] border-black">
+          <div className=" w-full lg:w-1/2 xl:w-5/12 p-5 border-[2px] border-black">
             <Image
-              className="w-full h-[300px] md:h-[600px]"
+              className="w-full h-[600px] sm:w-[600px] sm:h-[600px] mx-auto"
               src={data.thumbnail}
             />
           </div>
-          <div className=" w-full lg:w-7/12">
+          <div className=" w-full lg:w-1/2 xl:w-7/12">
             <h4 className=" font-semibold text-base md:text-lg xl:text-xl 2xl:text-2xl text-red-700 capitalize">
               Categoty: {data.category}
             </h4>
@@ -118,7 +128,10 @@ const ProductDIsplay = () => {
                 </button>
               )}
 
-              <button className="flex items-center justify-center gap-2 w-full lg:w-[40%] xl:w-[30%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white">
+              <button
+                onClick={handleShare}
+                className="flex items-center justify-center gap-2 w-full lg:w-[40%] xl:w-[30%] p-2 border-[1px] border-gray-500 font-semibold text-lg hover:bg-black hover:text-white"
+              >
                 <FaShare /> Share Now
               </button>
             </Flex>

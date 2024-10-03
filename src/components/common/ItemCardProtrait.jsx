@@ -2,21 +2,40 @@ import React from "react";
 import Image from "./Image";
 import Flex from "./Flex";
 import { Link } from "react-router-dom";
-import { FaCartShopping, FaRegEye } from "react-icons/fa6";
+import { FaCartShopping, FaRegEye, FaShare } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { cartReducer } from "../../redux/features/CartSlice";
 import toast, { Toaster } from "react-hot-toast";
 
 const ItemCardProtrait = ({ className, data }) => {
   const dispatch = useDispatch(); // dispatch instance
+
   // function for add the product to the cart
   const addToCart = () => {
     dispatch(cartReducer({ ...data, qun: 1 }));
     toast.success("Item is added");
   };
+
+  // function for copy the product link
+  const handleShare = () => {
+    let link = `https://www.mssmcorporation.com/product/${data.id}`;
+    navigator.clipboard
+      .writeText(link)
+      .then(() => toast.success("Item is added"));
+  };
   return (
-    <div className={`${className} border-[1px] border-gray-500 p-2`}>
+    <div
+      className={`${className} border-[1px] border-gray-500 p-2 relative overflow-hidden`}
+    >
       <Toaster position="top-right" reverseOrder={false} />
+      <Flex className="flex-col absolute duration-200 ease-in-out top-2 group right-[-58px] hover:right-0 bg-white shadow-lg">
+        <button
+          onClick={handleShare}
+          className=" p-3 text-balance flex items-center duration-200 ease-in-out gap-5 group-hover:gap-2 font-semibold"
+        >
+          <FaShare /> Share
+        </button>
+      </Flex>
       <div className="w-full h-[250px]">
         <Image
           className="mx-auto h-full object-cover w-full"
