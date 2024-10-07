@@ -1,31 +1,25 @@
-# React + Tailwind CSS Starter Template.
+# E-commerce Website
 
-## Optimized for Vercel deployment
+Creative IT Institute (MERN 2308 Batch)
 
-Table of Contents:
+## Version
 
-- Vite
-- React JS
-- Tailwind CSS
-- React Icons
-- React Router DOM
+[![MIT License](https://img.shields.io/badge/Version-Alpha-red.svg)](https://choosealicense.com/licenses/mit/)
 
-### Setup Template
+## Tech Stack
 
-```
-git clone https://github.com/rol2022/reactive-starter.git
-```
+**Client:** React js, TailwindCSS, Redux, Firebase
 
-### After Setup
+**Server:** Node js, Express js, Mongo DB
 
-Please delete the `.git` folder to delete all git configuration.
+## Deployment
 
-### Usage
+To deploy this project run
 
-Run Application
-
-```
-npm start
+```bash
+  npm start
 ```
 
-### &copy; 2024 Team Republic of Legends.
+## Authors
+
+- [@ Mahmood Hassan Rameem](https://rameem.netlify.app/)
