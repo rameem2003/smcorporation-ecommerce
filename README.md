@@ -1,10 +1,10 @@
-# E-commerce Website
+# SM Corporation
 
-Creative IT Institute (MERN 2308 Batch)
+MS S/M Corporation E-commerce
 
 ## Version
 
-[![MIT License](https://img.shields.io/badge/Version-Alpha-red.svg)](https://choosealicense.com/licenses/mit/)
+[![MIT License](https://img.shields.io/badge/Version-Stable-green.svg)](https://choosealicense.com/licenses/mit/)
 
 ## Tech Stack
 
