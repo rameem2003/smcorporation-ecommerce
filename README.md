@@ -20,6 +20,8 @@ To deploy this project run
   npm start
 ```
 
+![SS](./public/ss.png)
+
 ## Authors
 
 - [@ Mahmood Hassan Rameem](https://rameem.netlify.app/)
